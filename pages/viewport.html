@@ -1,0 +1,60 @@
+<div 
+	ng-controller="ViewPortController as viewportController" 
+	class="ui-viewport no-cursor" 
+	ng-mousedown="viewportController.viewport.handle_mouse_down($event)" 
+	ng-mouseup="viewportController.viewport.handle_mouse_up($event)" 
+	ng-mousemove="viewportController.viewport.handle_mouse_move($event)"
+>
+	<div class="ui-legend">
+		<div class="row-fluid clearfix">
+			<div class="col-xs-12 map-coordinate">
+				<span>{{viewportController.viewport.yLabel}}: <strong>{{viewportController.viewport.latitude}}</strong>
+			</div>
+			<div class="col-xs-12 map-coordinate">
+				<span>{{viewportController.viewport.xLabel}}: <strong>{{viewportController.viewport.longitude}}</strong>
+			</div>
+		</div>
+	</div>
+	<div class="ui-options">
+		<div class="row-fluid clearfix">
+			<div class="checkbox col-xs-12">
+				<label>
+					<input ng-model="viewportController.viewport.crosshairEnabled" ng-click="viewportController.viewport.update_crosshair($event)" type="checkbox"> Cross-hair
+				</label>
+			</div>
+			<div class="checkbox col-xs-12">
+				<label>
+					<input ng-model="viewportController.viewport.geoLocationEnabled" type="checkbox"> Geolocation
+				</label>
+			</div>
+		</div>
+	</div>
+	<div 
+		class="crosshair x"
+		 style="
+		 	left: 0px;
+			top: {{ viewportController.viewport.cursorActualPositionY }}px;
+		 	border-left-width: {{ viewportController.viewport.cursorActualPositionX - 1 }}px;
+		 	border-right-width: {{ viewportController.viewport.totalWidth - viewportController.viewport.cursorActualPositionX - 2 }}px;
+		 ">
+	</div>
+	<div 
+		class="crosshair y"
+		 style="
+		 	top: 0px;
+		 	left: {{ viewportController.viewport.cursorActualPositionX }}px;
+		 	border-top-width: {{viewportController.viewport.cursorActualPositionY - 1}}px;
+		 	border-bottom-width: {{viewportController.viewport.totalHeight - viewportController.viewport.cursorActualPositionY - 2}}px;
+		 ">
+	</div>
+	<div 
+		class="zoom-box"
+		style="
+			top: {{ viewportController.viewport.zoomBoxPosition.top }}px;
+			left: {{ viewportController.viewport.zoomBoxPosition.left }}px;
+			right: {{ viewportController.viewport.zoomBoxPosition.right }}px;
+			bottom: {{ viewportController.viewport.zoomBoxPosition.bottom }}px;
+		"
+	>
+	</div>
+</div>
